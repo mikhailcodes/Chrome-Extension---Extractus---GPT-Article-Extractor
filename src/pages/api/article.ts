@@ -14,7 +14,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
     return
   }
 
-  const { article, complexity } = req.body as { article: string, complexity?: number }
+  const request = JSON.parse(req.body);
+
+  const { article, complexity } = request as { article: string, complexity?: number }
 
   const response = await summerizeArticle(article, complexity);
 

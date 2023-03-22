@@ -8,22 +8,15 @@ type Data = {
   content?: Object
 }
 
-
-async function processArticle(article: string) {
-  const summary = await summerizeArticle(article);
-  return summary
-}
-
-
 export default async function handler(req: NextApiRequest, res: NextApiResponse<Data>) {
   if (req.method !== 'POST') {
     res.status(405).json({ name: 'Method not allowed' })
     return
   }
 
-  const { article } = req.body as { article: string }
+  const { article, complexity } = req.body as { article: string, complexity?: number }
 
-  const response = await processArticle(article);
+  const response = await summerizeArticle(article, complexity);
 
   if (!response) {
     res.status(400).json({ name: 'Invalid Data' })

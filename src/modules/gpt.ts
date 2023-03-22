@@ -11,11 +11,10 @@ const api = new ChatGPTAPI({
 
 const summerizeArticle = async (content: any, complexity = 2) => {
 
-    const how_complex = complexity >= 3 ? 'university' : 'grade 5'
+    // const how_complex = complexity >= 3 ? 'university' : 'grade 5'
     const bullet_number = complexity >= 3 ? complexity * 2 : complexity;
-    const sentence_num = complexity >= 3 ? "2-3" : "1-2";
 
-    const propmpt = `You are a journalist write a headline summary of the article, along with ${bullet_number} bullet points and ${sentence_num} sentences for each bullet point of the article content. Set the summary to a ${how_complex} reading level.  \n\n The content is here: ${content}.`
+    const propmpt = `You are a journalist write a summary of the following article with ${bullet_number} bullet points and 1-2 sentences for each bullet point of the article content. \n\n The article content is here: ${content}.`
     const res = await api.sendMessage(propmpt)
 
     return {

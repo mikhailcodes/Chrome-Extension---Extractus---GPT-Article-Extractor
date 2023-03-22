@@ -15,7 +15,7 @@ const summerizeArticle = async (content: any, complexity = 2) => {
     const bullet_number = complexity >= 3 ? complexity * 2 : complexity;
     const sentence_num = complexity >= 3 ? "2-3" : "1-2";
 
-    const propmpt = `You are a journalist write a short summary of the article below. Provide the summary with ${bullet_number} bullet points and ${sentence_num} sentences for each bullet point. Set the summary to a ${how_complex} reading level.  \n\n The content is here: ${content}.`
+    const propmpt = `You are a journalist write a headline summary of the article, along with ${bullet_number} bullet points and ${sentence_num} sentences for each bullet point of the article content. Set the summary to a ${how_complex} reading level.  \n\n The content is here: ${content}.`
     const res = await api.sendMessage(propmpt)
 
     return {

@@ -22,7 +22,7 @@ const summerizeArticle = async (content: any, complexity = 2) => {
         parentMessageId: 2,
         message: complexity,
     }
-    }
+    
     /*
     return {
         id: res.id,

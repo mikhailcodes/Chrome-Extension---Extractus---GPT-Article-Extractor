@@ -3,7 +3,7 @@ import { ChatGPTAPI } from 'chatgpt'
 const api = new ChatGPTAPI({
     apiKey: process.env.OPENAI_API_KEY || '',
     completionParams: {
-        model: "gpt-3.5-turbo",
+        model: "gpt-4",
         temperature: 0.5
     }
 })

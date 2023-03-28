@@ -14,14 +14,24 @@ const summerizeArticle = async (content: any, complexity = 2) => {
     // const how_complex = complexity >= 3 ? 'university' : 'grade 5'
     const bullet_number = complexity >= 3 ? complexity * 2 : complexity;
 
-    const propmpt = `You are a journalist. Summerize and provide ${bullet_number} bullet points and 1-2 sentences for each bullet point, using "-" to seperate each bullet of the article content below. \n\n The article content is here: ${content}.`
+    const propmpt = `You are a journalist. Summerize and provide ${bullet_number} bullet points and 1-2 sentences for each bullet point, ONLY return a JSON with the data so that the bullet points are all in an array. \n\n The article content is here: ${content}.`
     const res = await api.sendMessage(propmpt)
 
+    const data = await (function () {
+        try {
+            return JSON.parse(res.text)
+        } catch (e) {
+            return res.text
+        }
+    })()
+
+    //    console.log(data)
 
     return {
         id: res.id,
         parentMessageId: res.parentMessageId,
-        message: res.text,
+        message: data,
+        data_type: data.bullet_points ? 'json' : 'text',
     }
 }
 

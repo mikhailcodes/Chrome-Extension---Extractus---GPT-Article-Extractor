@@ -14,8 +14,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
     return
   }
 
-  console.time("Request timer:");
-
   const request = JSON.parse(req.body);
 
   const { article, complexity } = request as { article: string, complexity?: number }
@@ -28,5 +26,5 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
   }
 
   res.status(200).json({ name: 'Success', content: response })
-  console.timeEnd("Request timer:");
+
 }
